@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-import { db } from "@/services/db";
 import Link from "next/link";
 
 const monthList = [
@@ -18,13 +17,15 @@ const monthList = [
   "Декабрь",
 ];
 
-const getAllProjectsComponents = async () => {
-  const projects = await db.project.findMany({
-    orderBy: {
-      date: "asc",
-    },
-  });
-
+const getAllProjectsComponents = (
+  projects: {
+    id: string;
+    date: Date;
+    imageUrl: string;
+    shortDescription: string;
+    name: string;
+  }[]
+) => {
   return projects.map((project) => (
     <li className="mb-10 ms-4" key={project.id}>
       <div className="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -start-1.5 border border-white"></div>
@@ -53,11 +54,20 @@ const getAllProjectsComponents = async () => {
   ));
 };
 
-const ProjectsList = async () => {
-  const projects = await getAllProjectsComponents();
+const ProjectsList = ({
+  projects,
+}: {
+  projects: {
+    id: string;
+    date: Date;
+    imageUrl: string;
+    shortDescription: string;
+    name: string;
+  }[];
+}) => {
   return (
     <ol className="list-style-color-red relative border-s border-blue-400">
-      {projects}
+      {getAllProjectsComponents(projects)}
     </ol>
   );
 };
