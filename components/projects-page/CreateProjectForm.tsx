@@ -44,7 +44,7 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
       setValue(data.fullDescription);
       setSelectedCustomers(data.customers.map((customer) => customer.id));
     }
-  }, []);
+  }, [data]);
 
   return (
     <div className="w-full">

@@ -29,8 +29,6 @@ export const uploadImages = async (data: FormData) => {
           `${randomUUID()}.${file.type.split("/")[1]}`
         );
 
-        console.log(path);
-
         try {
           await writeFile(path, buffer);
           return path;
@@ -142,8 +140,7 @@ export const updateProject = async (data: FormData, id: string) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -153,8 +150,7 @@ export const deleteProject = async (id: string) => {
     where: { id },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -167,8 +163,7 @@ export const hiddenProject = async (id: string, status: boolean) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -190,8 +185,7 @@ export const createCustomer = async (data: FormData) => {
     data: { ...customer },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("customers");
 
   return { customer: res };
 };
@@ -208,8 +202,7 @@ export const updateCustomer = async (data: FormData, id: string) => {
     data: { ...customer },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("customers");
 
   return { customer: res };
 };

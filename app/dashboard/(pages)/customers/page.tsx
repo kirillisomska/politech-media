@@ -1,9 +1,10 @@
 import CustomersTable from "@/components/customers-page/CustomersTable";
+import { getAllCustomers } from "@/db/db";
 import { db } from "@/services/db";
 import Link from "next/link";
 
 const CustomersPage = async () => {
-  const customers = await db.customer.findMany();
+  const customers = await getAllCustomers();
 
   return (
     <div>

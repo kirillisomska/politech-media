@@ -1,8 +1,8 @@
 import ProjectsList from "@/components/projects-list/ProjectsList";
-import { getAllProjects } from "@/db/db";
+import {  getAllProjectsWithoutCustomers } from "@/db/db";
 
 export default async function Home() {
-  const projects = (await getAllProjects()).filter((project) => !project.hidden);
+  const projects = await getAllProjectsWithoutCustomers();
 
   return (
     <>
