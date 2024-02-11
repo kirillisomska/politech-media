@@ -21,7 +21,7 @@ const getProjectById = async (id: string) => {
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const project = await getProjectById(params.id);
   const customers = await getAllCustomers();
-  const dirNames = getAllDirNames();
+  const dirNames = await getAllDirNames();
 
   return (
     <div>

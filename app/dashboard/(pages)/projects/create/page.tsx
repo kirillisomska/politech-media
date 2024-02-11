@@ -3,7 +3,7 @@ import CreateProjectForm from "@/components/projects-page/CreateProjectForm";
 import { getAllCustomers } from "@/db/db";
 
 const CreateProjectPage = async () => {
-  const dirNames = getAllDirNames();
+  const dirNames = await getAllDirNames();
   const customers = await getAllCustomers();
 
   return (

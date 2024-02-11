@@ -1,8 +1,8 @@
 import { getAllDirNames } from "@/actions/photos";
 import CreateCustomerForm from "@/components/customers-page/CreateCustomerForm";
 
-const CreateCustomerPage = () => {
-  const dirNames = getAllDirNames();
+const CreateCustomerPage = async () => {
+  const dirNames = await getAllDirNames();
 
   return (
     <div>

@@ -16,7 +16,7 @@ const getCustomerById = async (id: string) => {
 };
 
 const UpdateCustomerPage = async ({ params }: { params: { id: string } }) => {
-  const dirNames = getAllDirNames();
+  const dirNames = await getAllDirNames();
   const customer = await getCustomerById(params.id);
 
   return (

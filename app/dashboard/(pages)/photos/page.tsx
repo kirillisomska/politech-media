@@ -4,7 +4,7 @@ import UploadImageForm from "@/components/photos-page/UploadImageForm";
 import CreateDirForm from "@/components/photos-page/CreateDirForm";
 
 const PhotosPage = async () => {
-  const dirNames = getAllDirNames();
+  const dirNames = await getAllDirNames();
 
   return (
     <div>
