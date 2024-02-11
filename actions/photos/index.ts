@@ -60,17 +60,17 @@ export const createDir = async (data: FormData) => {
 };
 
 export const getAllDirNames = () => {
+  if (process.env.CURRENT_ENV === "vercel") {
+    return [];
+  }
+
   const publicFolderPath = path.join(
     process.cwd(),
     process.env.DEFAULT_IMAGE_FOLDER_PATH!
   );
 
-  console.log(publicFolderPath);
-
   const fileNames = fs.readdirSync(publicFolderPath, { withFileTypes: true });
 
-
-  console.log(fileNames.filter((d) => d.isDirectory()).map((d) => d.name));
   return fileNames.filter((d) => d.isDirectory()).map((d) => d.name);
 };
 
