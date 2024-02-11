@@ -3,7 +3,7 @@ import { unstable_cache } from "next/cache";
 
 export const getAllProjects = unstable_cache(
   async () => {
-    return await db.project.findMany({
+    return db.project.findMany({
       orderBy: { date: "desc" },
       include: { customers: true },
     });
@@ -16,7 +16,7 @@ export const getAllProjects = unstable_cache(
 
 export const getAllProjectsWithoutCustomers = unstable_cache(
   async () => {
-    return await db.project.findMany({
+    return db.project.findMany({
       orderBy: { date: "desc" },
       where: { hidden: false },
     });
@@ -24,12 +24,12 @@ export const getAllProjectsWithoutCustomers = unstable_cache(
   ["projects"],
   {
     tags: ["projects"],
-  }
+  },
 );
 
 export const getAllCustomers = unstable_cache(
   async () => {
-    return await db.customer.findMany({
+    return db.customer.findMany({
       include: { projects: true },
     });
   },
