@@ -8,7 +8,7 @@ import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/services/db";
 
-export const uploadImages = async (data: FormData) => {
+export async function uploadImages (data: FormData) {
   const files: FileList | null = data.getAll("file") as unknown as FileList;
   const dirName = data.get("dir");
 
@@ -45,7 +45,7 @@ export const uploadImages = async (data: FormData) => {
   return { paths };
 };
 
-export const createDir = async (data: FormData) => {
+export async function createDir (data: FormData) {
   const dirName = data.get("dirName");
   const publicFolderPath = path.join(
     process.cwd(),
@@ -57,7 +57,7 @@ export const createDir = async (data: FormData) => {
   revalidatePath("/dashboard", "layout");
 };
 
-export const getAllDirNames = () => {
+export async function getAllDirNames () {
   if (process.env.CURRENT_ENV === "vercel") {
     return [];
   }
@@ -81,7 +81,7 @@ const createProjectSchema = z.object({
   customers: z.array(z.string()),
 });
 
-export const createProject = async (data: FormData) => {
+export async function createProject (data: FormData) {
   console.log(data.get("customers"));
 
   const project = createProjectSchema.parse({
@@ -110,7 +110,7 @@ export const createProject = async (data: FormData) => {
   return { project: res };
 };
 
-export const updateProject = async (data: FormData, id: string) => {
+export async function updateProject (data: FormData, id: string) {
   const project = createProjectSchema.parse({
     name: data.get("name"),
     shortDescription: data.get("shortDescription"),
@@ -148,7 +148,7 @@ export const updateProject = async (data: FormData, id: string) => {
   return { project: res };
 };
 
-export const deleteProject = async (id: string) => {
+export async function deleteProject (id: string) {
   const res = await db.project.delete({
     where: { id },
   });
@@ -160,7 +160,7 @@ export const deleteProject = async (id: string) => {
   return { project: res };
 };
 
-export const hiddenProject = async (id: string, status: boolean) => {
+export async function hiddenProject (id: string, status: boolean) {
   const res = await db.project.update({
     where: { id },
     data: {
@@ -181,7 +181,7 @@ const CustomerSchema = z.object({
   contacts: z.string(),
 });
 
-export const createCustomer = async (data: FormData) => {
+export async function createCustomer (data: FormData) {
   const customer = CustomerSchema.parse({
     name: data.get("name"),
     imageUrl: data.get("imageUrl"),
@@ -198,7 +198,7 @@ export const createCustomer = async (data: FormData) => {
   return { customer: res };
 };
 
-export const updateCustomer = async (data: FormData, id: string) => {
+export async function updateCustomer (data: FormData, id: string) {
   const customer = CustomerSchema.parse({
     name: data.get("name"),
     imageUrl: data.get("imageUrl"),
