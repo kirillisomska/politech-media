@@ -15,6 +15,7 @@ model Project {
   fullDescription  String
   date             DateTime
   customers        Customer[]
+  hidden           Boolean
 }
 
 model Customer {

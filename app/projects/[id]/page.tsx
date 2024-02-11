@@ -1,15 +1,10 @@
 import { db } from "@/services/db";
+import { getServerSession } from "next-auth";
 import Image from "next/image";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import Markdown from "react-markdown";
-
-export async function generateStaticParams() {
-  const res = await db.project.findMany();
-
-  return res.map((project) => ({
-    slug: project.id,
-  }));
-}
+import rehypeRaw from "rehype-raw";
 
 const getProjectById = async (id: string) => {
   const project = await db.project.findFirst({ where: { id } });
@@ -23,8 +18,13 @@ const getProjectById = async (id: string) => {
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const project = await getProjectById(params.id);
+  const session = await getServerSession();
+
   return (
-    <div>
+    <div className="w-full max-w-[1280px] mx-auto px-4">
+      {session?.user?.email ? (
+        <h2>Проект скрыт и не виден пользователям с главной страницы!</h2>
+      ) : null}
       <h1>{project.name}</h1>
       <Image
         src={project.imageUrl}
@@ -33,7 +33,11 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
         alt="Картинка проекта"
       />
       <p>{project.date.toString()}</p>
-      <Markdown>{project.fullDescription}</Markdown>
+      <Markdown rehypePlugins={[rehypeRaw]}>{project.fullDescription}</Markdown>
+
+      {session?.user?.email ? (
+        <Link href={`/dashboard/projects/${params.id}`}>Обновить</Link>
+      ) : null}
     </div>
   );
 };
