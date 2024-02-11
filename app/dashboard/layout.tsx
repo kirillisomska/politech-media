@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { unstable_noStore } from "next/cache";
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 
@@ -14,6 +15,7 @@ export default function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  unstable_noStore();
   return (
     <div className="max-w-[1280px] w-[100%] m-auto px-4">
       <ul
@@ -33,7 +35,6 @@ export default function Layout({
           <Link
             href="/dashboard/photos"
             className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-            
           >
             Галерея
           </Link>
@@ -42,7 +43,6 @@ export default function Layout({
           <Link
             href="/dashboard/projects"
             className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-            
           >
             Проекты
           </Link>
@@ -51,7 +51,6 @@ export default function Layout({
           <Link
             href="/dashboard/customers"
             className="my-2 block border-x-0 border-b-2 border-t-0 border-transparent px-7 pb-3.5 pt-4 text-xs font-medium uppercase leading-tight text-neutral-500 hover:isolate hover:border-transparent hover:bg-neutral-100 focus:isolate focus:border-transparent data-[te-nav-active]:border-primary data-[te-nav-active]:text-primary dark:text-neutral-400 dark:hover:bg-transparent dark:data-[te-nav-active]:border-primary-400 dark:data-[te-nav-active]:text-primary-400"
-            
           >
             Заказчики
           </Link>
