@@ -64,8 +64,15 @@ export const getAllDirNames = () => {
     process.cwd(),
     process.env.DEFAULT_IMAGE_FOLDER_PATH!
   );
+
+  console.log(getAllDirNames());
+
   const fileNames = fs.readdirSync(publicFolderPath, { withFileTypes: true });
-  return fileNames.filter((d) => d.isDirectory()).map((d) => d.name);
+
+  const res = fileNames.filter((d) => d.isDirectory()).map((d) => d.name);
+
+  console.log(res);
+  return res;
 };
 
 const createProjectSchema = z.object({
