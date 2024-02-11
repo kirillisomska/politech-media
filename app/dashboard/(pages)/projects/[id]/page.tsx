@@ -1,5 +1,6 @@
 import { getAllDirNames } from "@/actions/photos";
 import CreateProjectForm from "@/components/projects-page/CreateProjectForm";
+import { getAllCustomers } from "@/db/db";
 import { db } from "@/services/db";
 import { Project } from "@/types";
 import { redirect } from "next/navigation";
@@ -19,7 +20,7 @@ const getProjectById = async (id: string) => {
 
 const ProjectPage = async ({ params }: { params: { id: string } }) => {
   const project = await getProjectById(params.id);
-  const customers = await db.customer.findMany();
+  const customers = await getAllCustomers();
   const dirNames = getAllDirNames();
 
   return (

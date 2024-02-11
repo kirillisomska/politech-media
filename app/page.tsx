@@ -1,11 +1,8 @@
 import ProjectsList from "@/components/projects-list/ProjectsList";
-import { db } from "@/services/db";
+import {  getAllProjectsWithoutCustomers } from "@/db/db";
 
 export default async function Home() {
-  const projects = await db.project.findMany({
-    where: { hidden: false },
-    orderBy: { date: "desc" },
-  });
+  const projects = await getAllProjectsWithoutCustomers();
 
   return (
     <>

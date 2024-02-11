@@ -4,7 +4,7 @@ import fs from "fs";
 import path, { join } from "path";
 import { randomUUID } from "crypto";
 import { writeFile } from "fs/promises";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/services/db";
 
@@ -28,8 +28,6 @@ export const uploadImages = async (data: FormData) => {
           `${process.env.DEFAULT_IMAGE_FOLDER_PATH}/${dirName}/`,
           `${randomUUID()}.${file.type.split("/")[1]}`
         );
-
-        console.log(path);
 
         try {
           await writeFile(path, buffer);
@@ -60,11 +58,17 @@ export const createDir = async (data: FormData) => {
 };
 
 export const getAllDirNames = () => {
+  if (process.env.CURRENT_ENV === "vercel") {
+    return [];
+  }
+
   const publicFolderPath = path.join(
     process.cwd(),
     process.env.DEFAULT_IMAGE_FOLDER_PATH!
   );
+
   const fileNames = fs.readdirSync(publicFolderPath, { withFileTypes: true });
+
   return fileNames.filter((d) => d.isDirectory()).map((d) => d.name);
 };
 
@@ -100,8 +104,7 @@ export const createProject = async (data: FormData) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -137,8 +140,7 @@ export const updateProject = async (data: FormData, id: string) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -148,8 +150,7 @@ export const deleteProject = async (id: string) => {
     where: { id },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -162,8 +163,7 @@ export const hiddenProject = async (id: string, status: boolean) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "layout");
+  revalidateTag("projects");
 
   return { project: res };
 };
@@ -185,8 +185,7 @@ export const createCustomer = async (data: FormData) => {
     data: { ...customer },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("customers");
 
   return { customer: res };
 };
@@ -203,8 +202,7 @@ export const updateCustomer = async (data: FormData, id: string) => {
     data: { ...customer },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("customers");
 
   return { customer: res };
 };

@@ -1,10 +1,10 @@
 import { getAllDirNames } from "@/actions/photos";
 import CreateProjectForm from "@/components/projects-page/CreateProjectForm";
-import { db } from "@/services/db";
+import { getAllCustomers } from "@/db/db";
 
 const CreateProjectPage = async () => {
   const dirNames = getAllDirNames();
-  const customers = await db.customer.findMany();
+  const customers = await getAllCustomers();
 
   return (
     <div>

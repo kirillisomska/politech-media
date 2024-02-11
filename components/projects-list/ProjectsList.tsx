@@ -1,3 +1,4 @@
+import { Project } from "@prisma/client";
 import Image from "next/image";
 
 import Link from "next/link";
@@ -17,15 +18,7 @@ const monthList = [
   "Декабрь",
 ];
 
-const getAllProjectsComponents = (
-  projects: {
-    id: string;
-    date: Date;
-    imageUrl: string;
-    shortDescription: string;
-    name: string;
-  }[]
-) => {
+const getAllProjectsComponents = (projects: Project[]) => {
   return projects.map((project) => (
     <li className="mb-10 ms-4" key={project.id}>
       <div className="absolute w-3 h-3 bg-blue-400 rounded-full mt-1.5 -start-1.5 border border-white"></div>
@@ -54,17 +47,7 @@ const getAllProjectsComponents = (
   ));
 };
 
-const ProjectsList = ({
-  projects,
-}: {
-  projects: {
-    id: string;
-    date: Date;
-    imageUrl: string;
-    shortDescription: string;
-    name: string;
-  }[];
-}) => {
+const ProjectsList = ({ projects }: { projects: Project[] }) => {
   return (
     <ol className="list-style-color-red relative border-s border-blue-400">
       {getAllProjectsComponents(projects)}
