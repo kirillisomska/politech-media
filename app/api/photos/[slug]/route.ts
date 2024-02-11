@@ -4,12 +4,14 @@ import fs from "fs";
 import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
-export const GET = async (req: Request, { params }: { params: { slug: string } }) => {
+export const GET = async (
+  req: Request,
+  { params }: { params: { slug: string } }
+) => {
   try {
-
     const publicFolderPath = path.join(
       process.cwd(),
-      params.slug === "all" ? "public/images" : `public/images/${params.slug}`
+      `${process.env.DEFAULT_IMAGE_FOLDER_PATH}/${params.slug}`
     );
     const fileNames = fs.readdirSync(publicFolderPath, { withFileTypes: true });
 
@@ -17,7 +19,7 @@ export const GET = async (req: Request, { params }: { params: { slug: string } }
       .filter((d) => !d.isDirectory())
       .map(
         (d) =>
-          `${process.env.NEXTAUTH_URL}images/${params.slug === "all" ? "" : params.slug + '/'}${d.name}`
+          `${process.env.NEXTAUTH_URL}api/uploads/images/${params.slug}/${d.name}`
       );
 
     revalidatePath("/dashboard/photos");

@@ -25,11 +25,11 @@ export const uploadImages = async (data: FormData) => {
         const buffer = Buffer.from(bytes);
 
         const path = join(
-          `./${process.env.DEFAULT_IMAGE_FOLDER_PATH}/${
-            dirName === "all" ? "" : dirName
-          }`,
+          `${process.env.DEFAULT_IMAGE_FOLDER_PATH}/${dirName}/`,
           `${randomUUID()}.${file.type.split("/")[1]}`
         );
+
+        console.log(path);
 
         try {
           await writeFile(path, buffer);

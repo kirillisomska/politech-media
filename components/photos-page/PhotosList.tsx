@@ -9,7 +9,7 @@ type PropTepes = {
 
 const PhotosList = ({ dirNames }: PropTepes) => {
   const [photosPath, setPhotoPath] = useState<string[]>([]);
-  const [dir, setDir] = useState<string>("all");
+  const [dir, setDir] = useState<string>("default");
 
   useEffect(() => {
     fetch(`/api/photos/${dir}`)
@@ -38,9 +38,6 @@ const PhotosList = ({ dirNames }: PropTepes) => {
             setDir(e.target.value);
           }}
         >
-          <option value="all" defaultChecked>
-            /
-          </option>
           {dirNames.map((dirName) => (
             <option key={dirName} value={dirName}>
               {dirName}
