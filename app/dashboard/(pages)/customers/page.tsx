@@ -4,7 +4,7 @@ import { db } from "@/services/db";
 import Link from "next/link";
 
 const CustomersPage = async () => {
-  const customers = await getAllCustomers();
+  const customers = await db.customer.findMany();
 
   return (
     <div>
