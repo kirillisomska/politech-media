@@ -2,7 +2,10 @@ import ProjectsList from "@/components/projects-list/ProjectsList";
 import { db } from "@/services/db";
 
 export default async function Home() {
-  const projects = await db.project.findMany();
+  const projects = await db.project.findMany({
+    where: { hidden: false },
+    orderBy: { date: "desc" },
+  });
 
   return (
     <>
