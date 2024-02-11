@@ -4,7 +4,7 @@ import fs from "fs";
 import path, { join } from "path";
 import { randomUUID } from "crypto";
 import { writeFile } from "fs/promises";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/services/db";
 
@@ -106,8 +106,7 @@ export const createProject = async (data: FormData) => {
     },
   });
 
-  revalidatePath("/dashboard", "layout");
-  revalidatePath("/", "page");
+  revalidateTag("projects");
 
   return { project: res };
 };

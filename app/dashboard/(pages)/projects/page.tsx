@@ -1,9 +1,9 @@
 import ProjectsTable from "@/components/projects-page/ProjectsTable";
-import { db } from "@/services/db";
+import { getAllProjects } from "@/db/db";
 import Link from "next/link";
 
 const ProjectsPage = async () => {
-  const projectsList = await db.project.findMany();
+  const projectsList = await getAllProjects();
 
   return (
     <div>
