@@ -105,6 +105,7 @@ export const createProject = async (data: FormData) => {
   });
 
   revalidateTag("projects");
+  revalidatePath("/dashboard/projects", 'page');
 
   return { project: res };
 };
@@ -141,6 +142,8 @@ export const updateProject = async (data: FormData, id: string) => {
   });
 
   revalidateTag("projects");
+  revalidatePath("/", 'page');
+  revalidatePath("/dashboard/projects", 'page');
 
   return { project: res };
 };
@@ -151,6 +154,8 @@ export const deleteProject = async (id: string) => {
   });
 
   revalidateTag("projects");
+  revalidatePath("/", 'page');
+  revalidatePath("/dashboard/projects", 'page');
 
   return { project: res };
 };
@@ -164,6 +169,8 @@ export const hiddenProject = async (id: string, status: boolean) => {
   });
 
   revalidateTag("projects");
+  revalidatePath("/dashboard/projects", 'page');
+  revalidatePath("/", 'page');
 
   return { project: res };
 };
@@ -186,6 +193,7 @@ export const createCustomer = async (data: FormData) => {
   });
 
   revalidateTag("customers");
+  revalidatePath("/dashboard/customers", 'page');
 
   return { customer: res };
 };
@@ -203,6 +211,7 @@ export const updateCustomer = async (data: FormData, id: string) => {
   });
 
   revalidateTag("customers");
+  revalidatePath("/dashboard/customers", 'page');
 
   return { customer: res };
 };
