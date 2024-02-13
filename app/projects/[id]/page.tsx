@@ -1,3 +1,4 @@
+import { getAllProjects } from "@/db/db";
 import { db } from "@/services/db";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
@@ -43,3 +44,9 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
 };
 
 export default ProjectPage;
+
+export async function generateStaticParams() {
+  const projects = await getAllProjects();
+
+  return projects.map((project) => ({ id: project.id }));
+}
