@@ -29,8 +29,8 @@ const ProjectsTable = ({ projects }: PropsTypes) => {
   const handleDataClick = () => {
     const sortedProjects = [...projectsList].sort((a, b) =>
       filters.dateFilter === "desc"
-        ? a.date.getTime() - b.date.getTime()
-        : b.date.getTime() - a.date.getTime()
+        ? new Date(a.date.toString()).getTime() - new Date(b.date.toString()).getTime() 
+        : new Date(b.date.toString()).getTime()  - new Date(a.date.toString()).getTime() 
     );
     setProjectsList(sortedProjects);
 
@@ -68,9 +68,9 @@ const ProjectsTable = ({ projects }: PropsTypes) => {
           <tbody className="text-gray-600 divide-y">
             {projectsList.map((item) => (
               <tr key={item.id}>
-                <td className="pr-6 py-4 whitespace-nowrap">{item.name}</td>
+                <td className="pr-6 py-4 whitespace-nowrap">{item.name.substring(0, 20)}</td>
                 <td className="pr-6 py-4 whitespace-nowrap">
-                  {item.date.toLocaleString().split(",")[0]}
+                  {item.date.toLocaleString().split("T")[0]}
                 </td>
                 <td className="pr-6 py-4 whitespace-nowrap">
                   {item.shortDescription.substring(0, 20)}

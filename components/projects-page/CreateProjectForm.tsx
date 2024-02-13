@@ -12,19 +12,43 @@ import UploadButton from "../photos-page/UploadButton";
 import PhotosList from "../photos-page/PhotosList";
 
 import { useRouter } from "next/navigation";
-import { Customer } from "@prisma/client";
-import { Project } from "@/types";
+import { Customer, Slide } from "@prisma/client";
 
 type PropTypes = {
   dirNames: string[];
   customers: Customer[];
   type: "create" | "update";
-  data?: Project;
+  data?: {
+    customers: {
+      id: string;
+      name: string;
+      imageUrl: string;
+      contacts: string;
+    }[];
+    slider: {
+      id: string;
+      text: string;
+      imageUrl: string;
+    }[];
+  } & {
+    id: string;
+    name: string;
+    shortDescription: string;
+    imageUrl: string;
+    fullDescription: string;
+    date: Date;
+    hidden: boolean;
+  };
 };
 
 const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
   const [value, setValue] = useState<string>();
   const [selectedCustomers, setSelectedCustomers] = useState<string[]>([]);
+  const [slider, setSlider] = useState<Slide[]>([]);
+  const [selectedSlides, setSelectedSlides] = useState<string[]>([]);
+  const [slideUrl, setSlideUrl] = useState("");
+  const [slideText, setSlideText] = useState("");
+
   const router = useRouter();
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -33,8 +57,8 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
     formRef.current?.reset();
 
     const res = await (data
-      ? updateProject(formData, data.id)
-      : createProject(formData));
+      ? updateProject(formData, data.id, slider)
+      : createProject(formData, slider));
 
     router.push(`/projects/${res.project.id}`);
   };
@@ -43,6 +67,8 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
     if (data) {
       setValue(data.fullDescription);
       setSelectedCustomers(data.customers.map((customer) => customer.id));
+      setSlider(data.slider);
+      setSelectedSlides(data.slider.map((slide) => slide.id));
     }
   }, [data]);
 
@@ -171,6 +197,92 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
               defaultValue={data ? data.fullDescription : ""}
               className="hidden"
             ></textarea>
+
+            <div className="w-full flex gap-4">
+              <div className="w-full">
+                <label
+                  className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                  htmlFor="slider"
+                >
+                  Слайдер
+                </label>
+                <select
+                  className="mb-3 w-full h-[200px] px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                  name="slider"
+                  id="slider"
+                  value={selectedSlides}
+                  onChange={(e) =>
+                    setSelectedSlides(
+                      Array.from(
+                        e.target.selectedOptions,
+                        (option) => option.value
+                      )
+                    )
+                  }
+                  multiple
+                >
+                  {slider.map((slide) => (
+                    <option key={slide.id} value={slide.id}>
+                      {slide.text}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="w-full">
+                <p className="block mt-3 mb-2 text-sm font-medium text-gray-600">
+                  Создание слайда
+                </p>
+                <div className="w-full">
+                  <label
+                    className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                    htmlFor="slide-text"
+                  >
+                    Текст слайда
+                  </label>
+                  <input
+                    value={slideText}
+                    onChange={(e) => setSlideText(e.target.value)}
+                    type="text"
+                    id="slide-text"
+                    className="w-full px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                    placeholder="Текст ..."
+                  />
+                </div>
+                <div className="w-full">
+                  <label
+                    className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                    htmlFor="slide-url"
+                  >
+                    Путь до изображения
+                  </label>
+                  <input
+                    value={slideUrl}
+                    onChange={(e) => setSlideUrl(e.target.value)}
+                    type="text"
+                    id="slide-url"
+                    className="w-full px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                    placeholder="http://..."
+                  />
+                </div>
+                <p
+                  className="mt-3 w-full text-white bg-blue-600 hover:bg-blue-500 ring-offset-2 ring-blue-600 focus:ring shadow rounded-lg px-4 py-2.5 font-medium text-sm text-center duration-150"
+                  onClick={() => {
+                    const slide = {
+                      id: self.crypto.randomUUID(),
+                      text: slideText,
+                      imageUrl: slideUrl,
+                    } as Slide;
+                    setSlider((prev) => [...prev, slide]);
+                    setSelectedSlides((prev) => [...prev, slide.id]);
+
+                    setSlideText("");
+                    setSlideUrl("");
+                  }}
+                >
+                  Создать слайд
+                </p>
+              </div>
+            </div>
 
             <UploadButton
               defaultText={

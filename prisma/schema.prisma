@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Project {
-  id               String     @id @default(uuid())
+  id               String            @id @default(uuid())
   name             String
   shortDescription String
   imageUrl         String
@@ -16,6 +16,8 @@ model Project {
   date             DateTime
   customers        Customer[]
   hidden           Boolean
+  slider           Slide[]
+  socialMediaPosts  SocialMediaPost[]
 }
 
 model Customer {
@@ -30,4 +32,24 @@ model User {
   id       String @id @default(uuid())
   email    String @unique
   password String
+}
+
+model Slide {
+  id       String    @id @default(uuid())
+  text     String
+  imageUrl String
+  Project  Project[]
+}
+
+enum SocialMedia {
+  VK
+  WhatsApp
+  Telegram
+}
+
+model SocialMediaPost {
+  id      String      @id @default(uuid())
+  type    SocialMedia
+  link    String
+  Project Project[]
 }

@@ -5,7 +5,7 @@ export const getAllProjects = unstable_cache(
   async () => {
     return db.project.findMany({
       orderBy: { date: "desc" },
-      include: { customers: true },
+      include: { customers: true, slider: true },
     });
   },
   ["projects"],
