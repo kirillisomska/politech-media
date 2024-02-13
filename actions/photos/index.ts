@@ -7,7 +7,7 @@ import { writeFile } from "fs/promises";
 import { revalidatePath, revalidateTag } from "next/cache";
 import { z } from "zod";
 import { db } from "@/services/db";
-import { Slide } from "@prisma/client";
+import { Slide, SocialMediaPost } from "@prisma/client";
 
 export async function uploadImages(data: FormData) {
   const files: FileList | null = data.getAll("file") as unknown as FileList;
@@ -81,9 +81,14 @@ const createProjectSchema = z.object({
   fullDescription: z.string(),
   customers: z.array(z.string()),
   slider: z.array(z.string()),
+  socialMediaPosts: z.array(z.string()),
 });
 
-export async function createProject(data: FormData, slider: Slide[]) {
+export async function createProject(
+  data: FormData,
+  slider: Slide[],
+  socialMediaPosts: SocialMediaPost[]
+) {
   const project = createProjectSchema.parse({
     name: data.get("name"),
     shortDescription: data.get("shortDescription"),
@@ -92,10 +97,19 @@ export async function createProject(data: FormData, slider: Slide[]) {
     fullDescription: data.get("fullDescription"),
     customers: Array.from(data.getAll("customers")),
     slider: Array.from(data.getAll("slider")),
+    socialMediaPosts: Array.from(data.getAll("socials")),
   });
 
   const filteredSlider = slider.filter((slide) =>
     project.slider.includes(slide.id)
+  );
+
+  const filteredSocials = socialMediaPosts.filter((social) =>
+    project.socialMediaPosts.includes(social.id)
+  );
+
+  const socialMedias = await Promise.all(
+    filteredSocials.map((social) => db.socialMediaPost.create({ data: social }))
   );
 
   const slides = await Promise.all(
@@ -113,6 +127,9 @@ export async function createProject(data: FormData, slider: Slide[]) {
       slider: {
         connect: slides.map((item) => ({ id: item.id })),
       },
+      socialMediaPosts: {
+        connect: socialMedias.map((item) => ({ id: item.id })),
+      },
     },
   });
 
@@ -125,7 +142,8 @@ export async function createProject(data: FormData, slider: Slide[]) {
 export async function updateProject(
   data: FormData,
   id: string,
-  slider: Slide[]
+  slider: Slide[],
+  socialMediaPosts: SocialMediaPost[]
 ) {
   const project = createProjectSchema.parse({
     name: data.get("name"),
@@ -135,11 +153,12 @@ export async function updateProject(
     fullDescription: data.get("fullDescription"),
     customers: Array.from(data.getAll("customers")),
     slider: Array.from(data.getAll("slider")),
+    socialMediaPosts: Array.from(data.getAll("socials")),
   });
 
   const currentProject = await db.project.findUnique({
     where: { id },
-    include: { customers: true, slider: true },
+    include: { customers: true, slider: true, socialMediaPosts: true },
   });
 
   if (!currentProject) throw new Error("Project not found");
@@ -147,6 +166,18 @@ export async function updateProject(
   const currentSlideIds = currentProject.slider.map((slide) => slide.id);
   const currentCustomerIds = currentProject.customers.map(
     (customer) => customer.id
+  );
+  const currentSocialsIds = currentProject.socialMediaPosts.map(
+    (social) => social.id
+  );
+
+  const disconnectSocials = currentSocialsIds
+    .filter((social) => !project.socialMediaPosts.includes(social))
+    .map((item) => ({ id: item }));
+  const connectSocials = socialMediaPosts.filter(
+    (social) =>
+      project.socialMediaPosts.includes(social.id) &&
+      !currentSocialsIds.includes(social.id)
   );
 
   const disconnectSlides = currentSlideIds
@@ -168,13 +199,21 @@ export async function updateProject(
       disconnect: disconnectCustomers,
       connect: project.customers.map((item) => ({ id: item })),
     },
+    socialMediaPosts: {
+      disconnect: disconnectSocials,
+      connect: connectSocials,
+    },
   };
+
+  const socialsCreateResponse = connectSocials.map((social) =>
+    db.socialMediaPost.create({ data: social })
+  );
 
   const slidesCreateResponse = connectSlides.map((slide) =>
     db.slide.create({ data: slide })
   );
 
-  await Promise.all([...slidesCreateResponse]);
+  await Promise.all([...slidesCreateResponse, ...socialsCreateResponse]);
 
   const projectUpdateResponse = db.project.update({
     where: { id },

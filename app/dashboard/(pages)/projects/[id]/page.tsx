@@ -7,7 +7,7 @@ import { redirect } from "next/navigation";
 const getProjectById = async (id: string) => {
   const project = await db.project.findFirst({
     where: { id },
-    include: { customers: true, slider: true },
+    include: { customers: true, slider: true, socialMediaPosts: true },
   });
 
   if (!project) {

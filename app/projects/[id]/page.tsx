@@ -7,11 +7,12 @@ import { redirect } from "next/navigation";
 import Markdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import SliderComponent from "@/components/detail-page/SliderComponent";
+import SocialLink from "@/components/detail-page/SocialLink";
 
 const getProjectById = async (id: string) => {
   const project = await db.project.findFirst({
     where: { id },
-    include: { customers: true, slider: true },
+    include: { customers: true, slider: true, socialMediaPosts: true },
   });
 
   if (!project) {
@@ -102,7 +103,20 @@ const ProjectPage = async ({ params: { id } }: { params: { id: string } }) => {
             {project.fullDescription}
           </Markdown>
         </div>
-        <div className="grow-[3] shrink-[3] w-full"></div>
+        <div className="grow-[3] shrink-[3] w-full">
+          {project.socialMediaPosts.length ? (
+            <div>
+              <h2 className="text-gray-900 font-medium text-l my-2 ml-3">
+                Социальные сети
+              </h2>
+              <div className="flex gap-2 ml-3 flex-wrap justify-start">
+                {project.socialMediaPosts.map((social) => (
+                  <SocialLink socialMediaPosts={social} key={social.id} />
+                ))}
+              </div>
+            </div>
+          ) : null}
+        </div>
       </div>
       <div>
         {project.slider.length ? (

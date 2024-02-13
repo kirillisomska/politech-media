@@ -12,7 +12,7 @@ import UploadButton from "../photos-page/UploadButton";
 import PhotosList from "../photos-page/PhotosList";
 
 import { useRouter } from "next/navigation";
-import { Customer, Slide } from "@prisma/client";
+import { Customer, Slide, SocialMedia, SocialMediaPost } from "@prisma/client";
 
 type PropTypes = {
   dirNames: string[];
@@ -29,6 +29,11 @@ type PropTypes = {
       id: string;
       text: string;
       imageUrl: string;
+    }[];
+    socialMediaPosts: {
+      id: string;
+      type: SocialMedia;
+      link: string;
     }[];
   } & {
     id: string;
@@ -49,6 +54,11 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
   const [slideUrl, setSlideUrl] = useState("");
   const [slideText, setSlideText] = useState("");
 
+  const [socialList, setSocialList] = useState<SocialMediaPost[]>([]);
+  const [selectedSocials, setSelectedSocials] = useState<string[]>([]);
+  const [socialType, setSocialType] = useState<SocialMedia>(SocialMedia.VK);
+  const [socialUrl, setSocialUrl] = useState<string>("");
+
   const router = useRouter();
 
   const formRef = useRef<HTMLFormElement>(null);
@@ -57,8 +67,8 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
     formRef.current?.reset();
 
     const res = await (data
-      ? updateProject(formData, data.id, slider)
-      : createProject(formData, slider));
+      ? updateProject(formData, data.id, slider, socialList)
+      : createProject(formData, slider, socialList));
 
     router.push(`/projects/${res.project.id}`);
   };
@@ -69,6 +79,8 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
       setSelectedCustomers(data.customers.map((customer) => customer.id));
       setSlider(data.slider);
       setSelectedSlides(data.slider.map((slide) => slide.id));
+      setSocialList(data.socialMediaPosts);
+      setSelectedSocials(data.socialMediaPosts.map((item) => item.id));
     }
   }, [data]);
 
@@ -280,6 +292,96 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
                   }}
                 >
                   Создать слайд
+                </p>
+              </div>
+            </div>
+
+            <div className="w-full flex gap-4">
+              <div className="w-full">
+                <label
+                  className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                  htmlFor="socials"
+                >
+                  Социальные сети
+                </label>
+                <select
+                  className="mb-3 w-full h-[200px] px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                  name="socials"
+                  id="socials"
+                  value={selectedSocials}
+                  onChange={(e) =>
+                    setSelectedSocials(
+                      Array.from(
+                        e.target.selectedOptions,
+                        (option) => option.value
+                      )
+                    )
+                  }
+                  multiple
+                >
+                  {socialList.map((social) => (
+                    <option key={social.id} value={social.id}>
+                      {social.link}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="w-full">
+                <p className="block mt-3 mb-2 text-sm font-medium text-gray-600">
+                  Добавление ссылки
+                </p>
+                <div className="w-full">
+                  <label
+                    className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                    htmlFor="social-type"
+                  >
+                    Тип социальной сети
+                  </label>
+                  <select
+                    value={socialType}
+                    onChange={(e) =>
+                      setSocialType(e.target.value as SocialMedia)
+                    }
+                    id="social-type"
+                    className="w-full px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                  >
+                    <option value={SocialMedia.Telegram}>Telegram</option>
+                    <option value={SocialMedia.VK}>VK</option>
+                    <option value={SocialMedia.WhatsApp}>WhatsApp</option>
+                  </select>
+                </div>
+                <div className="w-full">
+                  <label
+                    className="block mt-3 mb-2 text-sm font-medium text-gray-600"
+                    htmlFor="social-url"
+                  >
+                    Ссылка на новость
+                  </label>
+                  <input
+                    value={socialUrl}
+                    onChange={(e) => setSocialUrl(e.target.value)}
+                    type="text"
+                    id="social-url"
+                    className="w-full px-3 py-2 text-sm text-gray-600 bg-white border rounded-lg shadow-sm outline-none appearance-none focus:ring-offset-2 focus:ring-indigo-600 focus:ring-2"
+                    placeholder="http://..."
+                  />
+                </div>
+                <p
+                  className="mt-3 w-full text-white bg-blue-600 hover:bg-blue-500 ring-offset-2 ring-blue-600 focus:ring shadow rounded-lg px-4 py-2.5 font-medium text-sm text-center duration-150"
+                  onClick={() => {
+                    const socialMedia = {
+                      id: self.crypto.randomUUID(),
+                      type: socialType,
+                      link: socialUrl,
+                    } as SocialMediaPost;
+                    setSocialList((prev) => [...prev, socialMedia]);
+                    setSelectedSocials((prev) => [...prev, socialMedia.id]);
+
+                    setSocialType(SocialMedia.VK);
+                    setSocialUrl("");
+                  }}
+                >
+                  Добавить ссылку
                 </p>
               </div>
             </div>
