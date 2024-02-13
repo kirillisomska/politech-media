@@ -17,8 +17,8 @@ const getProjectById = async (id: string) => {
   return project;
 };
 
-const ProjectPage = async ({ params }: { params: { id: string } }) => {
-  const project = await getProjectById(params.id);
+const ProjectPage = async ({ params: {id} }: { params: { id: string } }) => {
+  const project = await getProjectById(id);
   const session = await getServerSession();
 
   return (
@@ -37,7 +37,7 @@ const ProjectPage = async ({ params }: { params: { id: string } }) => {
       <Markdown rehypePlugins={[rehypeRaw]}>{project.fullDescription}</Markdown>
 
       {session?.user?.email ? (
-        <Link href={`/dashboard/projects/${params.id}`}>Обновить</Link>
+        <Link href={`/dashboard/projects/${id}`}>Обновить</Link>
       ) : null}
     </div>
   );
