@@ -23,7 +23,7 @@ const ProjectPage = async ({ params: {id} }: { params: { id: string } }) => {
 
   return (
     <div className="w-full max-w-[1280px] mx-auto px-4">
-      {session?.user?.email ? (
+      {session?.user?.email && project.hidden ? (
         <h2>Проект скрыт и не виден пользователям с главной страницы!</h2>
       ) : null}
       <h1>{project.name}</h1>
