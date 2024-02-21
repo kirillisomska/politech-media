@@ -28,8 +28,8 @@ const getAllProjectsComponents = (projects: Project[]) => {
         <time className="text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{`${
           monthList[date.getMonth()]
         }, ${date.getFullYear()}`}</time>
-        <div className="flex justify-between">
-          <div className="max-w-[60%]">
+        <div className="flex md:justify-between md:flex-row flex-col-reverse">
+          <div className="md:max-w-[60%]">
             <h2 className="text-lg font-semibold text-gray-900">
               {project.name}
             </h2>
@@ -49,7 +49,7 @@ const getAllProjectsComponents = (projects: Project[]) => {
               width={300}
               height={300}
               alt="Картинка проекта"
-              className="max-h-[200px] h-full object-cover max-w-[35%]"
+              className="max-h-[200px] h-full object-cover md:max-w-[35%]"
             />
           ) : null}
         </div>
@@ -61,7 +61,7 @@ const getAllProjectsComponents = (projects: Project[]) => {
 const ProjectsList = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="w-full">
-      <h2 className="mt-10 mb-4 text-gray-600 font-bold text-2xl text-center">Проекты</h2>
+      <h2 className="mt-10 mb-4 text-gray-900 font-bold text-3xl text-center">Наши проекты</h2>
       <ol className="list-style-color-red relative border-s border-blue-400 max-w-[1000px] w-full mx-auto">
         {getAllProjectsComponents(projects)}
       </ol>
