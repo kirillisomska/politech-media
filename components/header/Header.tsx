@@ -27,17 +27,17 @@ const Header = () => {
         } flex-1 items-center mt-8 text-gray-600 md:font-medium md:mt-0 md:flex`}
       >
         <ul className="justify-center items-center space-y-6 md:flex md:gap-4 md:space-y-0 md:mr-4">
-          <li className="hover:text-gray-900 md:min-w-[60px] md:text-center">
-            <Link href="/">Главная</Link>
+          <li className="hover:text-gray-900 md:min-w-[120px] md:text-center">
+            <Link href="/#about">О компании</Link>
           </li>
-          <li className="hover:text-gray-900 md:min-w-[60px] md:text-center">
-            <Link href="/about">О нас</Link>
+          <li className="hover:text-gray-900 md:min-w-[120px] md:text-center">
+            <Link href="/#projects">Проекты</Link>
           </li>
-          <li className="hover:text-gray-900 md:min-w-[60px] md:text-center">
-            <Link href="/partners">Партнеры</Link>
+          <li className="hover:text-gray-900 md:min-w-[120px] md:text-center">
+            <Link href="/#contacts">Контакты</Link>
           </li>
           {session.status === "authenticated" ? (
-            <li className="hover:text-gray-900 md:min-w-[60px] md:text-center">
+            <li className="hover:text-gray-900 md:min-w-[120px] md:text-center">
               <Link href="/dashboard">Дашборд</Link>
             </li>
           ) : null}

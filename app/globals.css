@@ -1,5 +1,9 @@
 @tailwind base;
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Firefox */
 * {
   scrollbar-width: thin;

@@ -69,7 +69,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section>
+        <section id="about">
           <h2 className="mt-10 mb-4 text-gray-900 font-bold text-3xl text-center">
             О компании
           </h2>
@@ -181,8 +181,10 @@ export default async function Home() {
           </div>
         </section>
 
-        <ProjectsList projects={projects} />
-        <section>
+        <div id="projects">
+          <ProjectsList projects={projects} />
+        </div>
+        <section id="contacts">
           <h2 className="mt-10 mb-4 text-gray-900 font-bold text-3xl text-center">
             Контакты
           </h2>
@@ -216,9 +218,7 @@ export default async function Home() {
                   >
                     example@gmail.com
                   </a>
-                  <p className="text-gray-900 mb-2">
-                    Пишите, когда вам удобно
-                  </p>
+                  <p className="text-gray-900 mb-2">Пишите, когда вам удобно</p>
                 </div>
                 <div className="flex gap-3">
                   <Link href="#">

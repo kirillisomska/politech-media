@@ -9,13 +9,13 @@ const Footer = () => {
       <Image src={logo} alt="Логотип" width={200} height={50}></Image>
         <ul className="justify-center items-center flex space-x-6 space-y-0 flex-wrap">
           <li className="hover:text-gray-900">
-            <Link href="/">Главная</Link>
+            <Link href="/#about">О компании</Link>
           </li>
           <li className="hover:text-gray-900">
-            <Link href="/about">О нас</Link>
+            <Link href="/#projects">Проекты</Link>
           </li>
           <li className="hover:text-gray-900">
-            <Link href="/partners">Партнеры</Link>
+            <Link href="/#contacts">Контакты</Link>
           </li>
         </ul>
       </div>
