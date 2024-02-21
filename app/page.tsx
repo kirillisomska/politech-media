@@ -75,11 +75,11 @@ export default async function Home() {
           </h2>
 
           <div className="flex flex-wrap gap-6 justify-between">
-            <div className="w-full max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] bg-white">
+            <div className="w-full md:max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4">
                 Организация мероприятий
               </h3>
-              <p className="text-gray-900 text-sm max-w-[75%]">
+              <p className="text-gray-900 text-sm max-w-[65%]">
                 Ищем профессионалов и приглашаем их для сотрудничества,
                 формируем ТЗ
               </p>
@@ -98,11 +98,11 @@ export default async function Home() {
               </svg>
             </div>
 
-            <div className="w-full max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] bg-white">
+            <div className="w-full md:max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4">
                 Видеомэппинг
               </h3>
-              <p className="text-gray-900 text-sm max-w-[75%]">
+              <p className="text-gray-900 text-sm max-w-[65%]">
                 Ищем профессионалов и приглашаем их для сотрудничества,
                 формируем ТЗ
               </p>
@@ -121,11 +121,11 @@ export default async function Home() {
               </svg>
             </div>
 
-            <div className="w-full max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] bg-white">
+            <div className="w-full md:max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4">
                 Представления
               </h3>
-              <p className="text-gray-900 text-sm max-w-[75%]">
+              <p className="text-gray-900 text-sm max-w-[65%]">
                 Ищем профессионалов и приглашаем их для сотрудничества,
                 формируем ТЗ
               </p>
@@ -144,11 +144,11 @@ export default async function Home() {
               </svg>
             </div>
 
-            <div className="w-full max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] bg-white">
+            <div className="w-full md:max-w-[600px] relative rounded-2xl shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4">
                 Танцы
               </h3>
-              <p className="text-gray-900 text-sm max-w-[75%]">
+              <p className="text-gray-900 text-sm max-w-[65%]">
                 Ищем профессионалов и приглашаем их для сотрудничества,
                 формируем ТЗ
               </p>
