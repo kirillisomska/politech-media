@@ -14,8 +14,13 @@ export default async function Home() {
       <div className="custom-screen max-w-[1280px] w-[100%] px-4 m-auto items-center flex-col gap-16">
         <section className="relative" id="top">
           <div className="w-full flex flex-col items-center justify-center gap-6 relative overflow-hidden">
-            <video autoPlay loop className="w-full" src="/compress.mp4" muted>
-            </video>
+            <video
+              autoPlay
+              loop
+              className="w-full"
+              src="/compress.mp4"
+              muted
+            ></video>
 
             <div
               className="absolute w-full h-full bg-black bg-opacity-80"
@@ -27,7 +32,8 @@ export default async function Home() {
 
             <div className="absolute top-[10%]">
               <h1 className="text-white md:text-5xl text-3xl font-semibold text-center uppercase">
-                Лаборатория идей «Политех<span className="text-[#39AAE1]">Медиа</span>»
+                Лаборатория идей «Политех
+                <span className="text-[#39AAE1]">Медиа</span>»
               </h1>
             </div>
           </div>
@@ -44,15 +50,15 @@ export default async function Home() {
             <div className=" shadow-md w-full xl:max-w-[342px] h-[225px] py-4 px-6 bg-white">
               <h2 className="text-[#39AAE1] text-7xl font-bold">2</h2>
               <h3 className="font-semibold text-xl text-gray-900 mt-4">
-                Используем широкий спектр мультимедийных интерактивных
-                технологий
+                Разрабатываем форму, дизайн и информационное наполнение продукта
               </h3>
             </div>
 
             <div className=" shadow-md w-full xl:max-w-[342px] h-[225px] py-4 px-6 bg-white">
               <h2 className="text-[#39AAE1] text-7xl font-bold">3</h2>
               <h3 className="font-semibold text-xl text-gray-900 mt-4">
-                Разрабатываем форму, дизайн и информационное наполнение продукта
+                Используем широкий спектр мультимедийных интерактивных
+                технологий
               </h3>
             </div>
           </div>
@@ -64,13 +70,13 @@ export default async function Home() {
           </h2>
 
           <p className="mb-6 max-w-[1058px] m-auto my-8 text-xl mb-[40px]">
-            Творческое конструкторское бюро &quot;Политех/Медиа&quot; сформировалось на
-            кафедре &quot;Дизайн и технологии медиаиндустрии&quot; Омского
-            государственного технического университета в 2017 г. Оно возникло
-            как сообщество единомышленников - преподавателей и студентов
-            ИТ-шников, имеющих интерес к компьютерному творчеству и желание
-            создавать нечто общественнозначимое, современное, уникальное,
-            красочное.
+            Творческое конструкторское бюро &quot;Политех/Медиа&quot;
+            сформировалось на кафедре &quot;Дизайн и технологии
+            медиаиндустрии&quot; Омского государственного технического
+            университета в 2017 г. Оно возникло как сообщество единомышленников
+            - преподавателей и студентов ИТ-шников, имеющих интерес к
+            компьютерному творчеству и желание создавать нечто
+            общественнозначимое, современное, уникальное, красочное.
           </p>
 
           <div className="flex flex-wrap gap-6 justify-between">
@@ -198,12 +204,18 @@ export default async function Home() {
               </address>
             </div>
           </div>
-          <div className="flex justify-between w-full text-white py-6 px-4 mt-6 items-center bg-[#39AAE1]"><p className="text-white font-semibold text-xl">г. Омск, пр. Мира 11<span className="hidden xl:inline">, корпус 6</span>, к. 6-338</p> </div>
-
+          <div className="flex justify-between w-full text-white py-6 px-4 mt-6 items-center bg-[#39AAE1]">
+            <p className="text-white font-semibold text-xl">
+              г. Омск, пр. Мира 11
+              <span className="hidden xl:inline">, корпус 6</span>, к. 6-338
+            </p>{" "}
+          </div>
         </section>
-        <Link className="block xl:hidden" href='#top'><div className="fixed bottom-[10px] right-[10px] bg-[#39AAE1] w-[50px] h-[50px] text-white text-center text-4xl rounded-[50%]">
-          ▲
-        </div></Link>
+        <Link className="block xl:hidden" href="#top">
+          <div className="fixed bottom-[10px] right-[10px] bg-[#39AAE1] w-[50px] h-[50px] text-white text-center text-4xl rounded-[50%]">
+            ▲
+          </div>
+        </Link>
       </div>
     </>
   );
