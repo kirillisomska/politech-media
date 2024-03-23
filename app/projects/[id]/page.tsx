@@ -81,8 +81,8 @@ const ProjectPage = async ({ params: { id } }: { params: { id: string } }) => {
               </div>
             </>
           ) : null}
-          <h2 className="text-gray-900 font-medium text-l my-2">Дата</h2>
-          <p className="text-gray-600 my-2 italic">
+          <h2 className="text-gray-900 font-medium text-l mt-4">Дата</h2>
+          <p className="text-gray-600 italic">
             {project.date.toLocaleDateString()}
           </p>
         </div>
@@ -92,12 +92,12 @@ const ProjectPage = async ({ params: { id } }: { params: { id: string } }) => {
         width={1280}
         height={720}
         alt="Картинка проекта"
-        className="max-h-[400px] h-full object-cover mx-auto my-4 shadow-lg"
+        className="max-h-[400px] h-full object-cover mx-auto my-8 shadow-lg"
       />
 
       <div className="w-full flex flex-col-reverse md:flex-row">
         <div className="md:block hidden grow-[3] shrink-[3] w-full"></div>
-        <div className="grow-[1] shrink-[1] w-full md:border-r border-gray-400 pr-4">
+        <div className="grow-[1] shrink-[1] w-full md:border-r border-gray-400 pr-4 pt-[8px]">
           <Markdown rehypePlugins={[rehypeRaw]}>
             {project.fullDescription}
           </Markdown>
