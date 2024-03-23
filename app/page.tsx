@@ -74,7 +74,7 @@ export default async function Home() {
           </p>
 
           <div className="flex flex-wrap gap-6 justify-between">
-            <div className="w-full md:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
+            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
                 Интерактивные инсталляции
               </h3>
@@ -85,7 +85,7 @@ export default async function Home() {
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
 
-            <div className="w-full md:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
+            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
                 Видеомэппинг
               </h3>
@@ -96,7 +96,7 @@ export default async function Home() {
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
 
-            <div className="w-full md:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
+            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
                 3D-моделирование
               </h3>
@@ -107,7 +107,7 @@ export default async function Home() {
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
 
-            <div className="w-full md:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
+            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
                 Дополненная реальность
               </h3>
