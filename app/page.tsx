@@ -76,13 +76,13 @@ export default async function Home() {
             университета. Оно возникло как сообщество единомышленников -
             преподавателей и студентов ИТ-направлений, имеющих интерес к
             компьютерному творчеству и желание создавать нечто общественно
-            значимое, современное, уникальное, красочное. Руководит работой
-            &quot;Политех\Медиа&quot; Макарова Таисья Васильевна.
+            значимое, современное, уникальное, красочное.
           </p>
 
           <p className="max-w-[1058px] m-auto text-xl my-3">
             Команда конструкторского бюро - живая бурлящая река, куда ежегодно
-            вливаются новые поколения творческой молодёжи.
+            вливаются новые поколения творческой молодёжи. Руководит работой
+            &quot;Политех\Медиа&quot; Макарова Таисья Васильевна.
           </p>
 
           <p className="max-w-[1058px] m-auto text-xl mb-[40px]">
@@ -119,8 +119,8 @@ export default async function Home() {
                 Дополненная реальность
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Появление в кадре при фотовидеосъёмке виртуальных
-                объектов, дополняющих реальную картину
+                Появление в кадре при фотовидеосъёмке виртуальных объектов,
+                дополняющих реальную картину
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
@@ -171,23 +171,23 @@ export default async function Home() {
               <address>
                 <div>
                   <a
-                    className="text-gray-900 font-bold text-xl mb-2 mt-3"
+                    className="text-gray-900 font-bold text-xl mb-2 mt-3 not-italic"
                     href="tel:+79136021597"
                   >
                     8 (913) 602-15-97
                   </a>
-                  <p className="text-gray-900 mb-2">
+                  <p className="text-gray-900 mb-2 not-italic">
                     Звоните с 09:00 до 18:00 МСК
                   </p>
                 </div>
                 <div>
                   <a
-                    className="text-gray-900 font-bold text-xl mb-2 mt-3"
+                    className="text-gray-900 font-bold text-xl mb-2 mt-3 not-italic"
                     href="mailto:p-media@inbox.ru"
                   >
                     p-media@inbox.ru
                   </a>
-                  <p className="text-gray-900 mb-2">Пишите, когда вам удобно</p>
+                  <p className="text-gray-900 mb-2 not-italic">Пишите, когда вам удобно</p>
                 </div>
                 <div className="flex gap-3">
                   <Link href="#">
@@ -198,7 +198,7 @@ export default async function Home() {
                         width={50}
                         height={50}
                       ></Image>
-                      <p>Telegram</p>
+                      <p className="not-italic">Telegram</p>
                     </div>
                   </Link>
                   <Link href="https://vk.com/politechmedia" target="_blank">
@@ -209,7 +209,7 @@ export default async function Home() {
                         width={50}
                         height={50}
                       ></Image>
-                      <p>ВКонтакте</p>
+                      <p className="not-italic">ВКонтакте</p>
                     </div>
                   </Link>
                 </div>
