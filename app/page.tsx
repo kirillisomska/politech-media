@@ -69,28 +69,23 @@ export default async function Home() {
             О компании
           </h2>
 
-          <p className="mb-6 max-w-[1058px] m-auto my-8 text-xl mb-[40px]">
+          <p className="max-w-[1058px] m-auto my-8 text-xl mb-[40px]">
             Творческое конструкторское бюро &quot;Политех/Медиа&quot;
-            сформировалось на кафедре &quot;Дизайн и технологии
+            сформировалось в 2017 г. на кафедре &quot;Дизайн и технологии
             медиаиндустрии&quot; Омского государственного технического
-            университета в 2017 г. Оно возникло как сообщество единомышленников
-            - преподавателей и студентов ИТ-шников, имеющих интерес к
+            университета. Оно возникло как сообщество единомышленников -
+            преподавателей и студентов ИТ направлений, имеющих интерес к
             компьютерному творчеству и желание создавать нечто
-            общественнозначимое, современное, уникальное, красочное.
+            общественнозначимое, современное, уникальное, красочное. Руководит
+            работой &quot;Политех/Медиа&quot; - Макарова Таисья Васильевна.
+            Команда конструкторского бюро - живая бурлящая река, куда каждый год
+            вливаются новые поколения творческой молодежи. За прошедшие годы
+            нами создано множество мультимедийных проектов для просвещения и
+            организации культурного досуга горожан. В своих работах мы
+            используем цифровые технологии:
           </p>
 
           <div className="flex flex-wrap gap-6 justify-between">
-            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
-              <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
-                Интерактивные инсталляции
-              </h3>
-              <p className="text-gray-900 text-sm max-w-[65%]">
-                Ищем профессионалов и приглашаем их для сотрудничества,
-                формируем ТЗ
-              </p>
-              <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
-            </div>
-
             <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
               <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
                 Видеомэппинг
@@ -107,8 +102,8 @@ export default async function Home() {
                 3D-моделирование
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Ищем профессионалов и приглашаем их для сотрудничества,
-                формируем ТЗ
+                Создание компьютерной копии объекта для реалистичного
+                отображения его облика с разных ракурсов
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
@@ -118,8 +113,19 @@ export default async function Home() {
                 Дополненная реальность
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Ищем профессионалов и приглашаем их для сотрудничества,
-                формируем ТЗ
+                Добавление в кадр специально созданных виртуальных объектов при
+                цифровой фотовидеосъемке
+              </p>
+              <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
+            </div>
+
+            <div className="w-full xl:max-w-[600px] relative  shadow-md px-6 py-3 md:h-[160px] h-[225px] bg-white">
+              <h3 className="font-semibold text-2xl text-gray-900 mt-4 mb-1">
+                Интерактивные инсталляции
+              </h3>
+              <p className="text-gray-900 text-sm max-w-[65%]">
+                Композиции с использованием мультимедийных устройств,
+                реагирующих на действия зрителей
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
             </div>
@@ -127,13 +133,13 @@ export default async function Home() {
 
           <div className="flex justify-between w-full text-[#39AAE1] py-6 px-4 mt-6 items-center bg-[#39AAE1]">
             <p className="text-white font-semibold text-xl">
-              У вас есть интересный проект?
+              Хотите сделать проект вместе с нами?
             </p>
             <Link
               href="#contacts"
               className="bg-white p-2 text-xs text-[#39AAE1] font-semibold shadow-sm flex items-center justify-center text-center max-h-14"
             >
-              Связаться с нами
+              Связаться
             </Link>
           </div>
         </section>
