@@ -57,8 +57,7 @@ export default async function Home() {
             <div className=" shadow-md w-full xl:max-w-[342px] h-[225px] py-4 px-6 bg-white">
               <h2 className="text-[#39AAE1] text-7xl font-bold">3</h2>
               <h3 className="font-semibold text-xl text-gray-900 mt-4">
-                Используем широкий спектр мультимедийных интерактивных
-                технологий
+                Используем широкий спектр мультимедийных технологий
               </h3>
             </div>
           </div>
@@ -187,7 +186,9 @@ export default async function Home() {
                   >
                     p-media@inbox.ru
                   </a>
-                  <p className="text-gray-900 mb-2 not-italic">Пишите, когда вам удобно</p>
+                  <p className="text-gray-900 mb-2 not-italic">
+                    Пишите, когда вам удобно
+                  </p>
                 </div>
                 <div className="flex gap-3">
                   <Link href="#">
