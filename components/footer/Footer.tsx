@@ -8,7 +8,7 @@ const Footer = () => {
         <Image src={logo} alt="Логотип" width={200} height={50}></Image>
       </div>
       <div>
-        <p className="text-gray-600 mt-3 pb-5 text-center">{`© ${new Date().getFullYear()}, ПолитехМедиа`}</p>
+        <p className="text-gray-600 mt-3 pb-5 text-center">{`© 2018 - ${new Date().getFullYear()}, ПолитехМедиа`}</p>
       </div>
     </footer>
   );
