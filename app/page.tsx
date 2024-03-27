@@ -119,7 +119,7 @@ export default async function Home() {
                 Дополненная реальность
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Появление в кадре при фотовидеосъёмке специальных виртуальных
+                Появление в кадре при фотовидеосъёмке виртуальных
                 объектов, дополняющих реальную картину
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
