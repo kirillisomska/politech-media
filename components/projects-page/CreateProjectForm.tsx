@@ -10,6 +10,7 @@ import MDEditor from "@uiw/react-md-editor";
 import { useEffect, useRef, useState } from "react";
 import UploadButton from "../photos-page/UploadButton";
 import PhotosList from "../photos-page/PhotosList";
+import { v4 as uuidv4 } from 'uuid';
 
 import { useRouter } from "next/navigation";
 import { Customer, Slide, SocialMedia, SocialMediaPost } from "@prisma/client";
@@ -280,7 +281,7 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
                   className="mt-3 w-full text-white bg-blue-600 hover:bg-blue-500 ring-offset-2 ring-blue-600 focus:ring shadow rounded-lg px-4 py-2.5 font-medium text-sm text-center duration-150"
                   onClick={() => {
                     const slide = {
-                      id: self.crypto.randomUUID(),
+                      id: uuidv4(),
                       text: slideText,
                       imageUrl: slideUrl,
                     } as Slide;
@@ -370,7 +371,7 @@ const CreateProjectForm = ({ dirNames, type, data, customers }: PropTypes) => {
                   className="mt-3 w-full text-white bg-blue-600 hover:bg-blue-500 ring-offset-2 ring-blue-600 focus:ring shadow rounded-lg px-4 py-2.5 font-medium text-sm text-center duration-150"
                   onClick={() => {
                     const socialMedia = {
-                      id: self.crypto.randomUUID(),
+                      id: uuidv4(),
                       type: socialType,
                       link: socialUrl,
                     } as SocialMediaPost;
