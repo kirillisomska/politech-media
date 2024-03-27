@@ -82,7 +82,7 @@ export default async function Home() {
 
           <p className="max-w-[1058px] m-auto text-xl my-3">
             Команда конструкторского бюро - живая бурлящая река, куда ежегодно
-            вливаются новые поколения творческой молодежи.
+            вливаются новые поколения творческой молодёжи.
           </p>
 
           <p className="max-w-[1058px] m-auto text-xl mb-[40px]">
@@ -97,7 +97,7 @@ export default async function Home() {
                 Видеомэппинг
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Видеопроекция на здания и обьекты сложной формы с учетом их
+                Видеопроекция на здания и обьекты сложной формы с учётом их
                 геометрии и положения в пространстве
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
@@ -119,7 +119,7 @@ export default async function Home() {
                 Дополненная реальность
               </h3>
               <p className="text-gray-900 text-sm max-w-[65%]">
-                Появление в кадре при фотовидеосъемке специальных виртуальных
+                Появление в кадре при фотовидеосъёмке специальных виртуальных
                 объектов, дополняющих реальную картину
               </p>
               <div className="absolute bottom-[35%] right-[24px] w-[50px] h-[50px] bg-[#39AAE1] rounded-[50%]"></div>
