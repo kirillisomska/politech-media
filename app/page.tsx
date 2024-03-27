@@ -177,7 +177,7 @@ export default async function Home() {
                     8 (913) 602-15-97
                   </a>
                   <p className="text-gray-900 mb-2">
-                    Звоните с 09:00 до 18:00 по МСК
+                    Звоните с 09:00 до 18:00 МСК
                   </p>
                 </div>
                 <div>
